@@ -1,11 +1,20 @@
-#include "MainWindow.hpp"
-#include <QApplication>
+#include <QGuiApplication>
+#include <QQmlApplicationEngine>
+
+#include <QtQml>
+
+#include "Cell.hpp"
+#include "Field.hpp"
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
+    QGuiApplication app(argc, argv);
 
-    return a.exec();
+    qmlRegisterType<Cell>("Pairs", 1, 0, "Cell");
+    qmlRegisterType<Field>("Pairs", 1, 0, "Field");
+
+    QQmlApplicationEngine engine;
+    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+
+    return app.exec();
 }
