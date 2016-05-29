@@ -1,20 +1,20 @@
+#include <Shingles.hpp>
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-
 #include <QtQml>
+#include <QQmlContext>
+#include <string>
 
-#include "Cell.hpp"
-#include "Field.hpp"
 
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
 
-    qmlRegisterType<Cell>("Pairs", 1, 0, "Cell");
-    qmlRegisterType<Field>("Pairs", 1, 0, "Field");
+    qmlRegisterType<Shingles>("GameComponents", 1, 0, "Shingles");
 
     QQmlApplicationEngine engine;
-    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+    engine.load(QUrl(QStringLiteral("qrc:/window.qml")));
 
     return app.exec();
 }
+
