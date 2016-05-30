@@ -15,12 +15,11 @@ using namespace std;
 class Shingles : public QObject
 {
     Q_OBJECT
-public:
-    Shingles();
 public slots:
     QString cannonize(QString s);
     QStringList getshingles(QString s);
-    QString check(QStringList s,QStringList f);
+    double check(QStringList s,QStringList f);
+    QString readFile(QString a);
 };
 
 #endif // SHINGLES_HPP

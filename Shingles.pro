@@ -1,4 +1,4 @@
-QT += quick qml
+QT += core gui opengl quick qml
 
 TARGET = Shingles
 

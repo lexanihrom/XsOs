@@ -1,13 +1,6 @@
 #include "Shingles.hpp"
-
-
-
-Shingles::Shingles():
-    QObject()
-{
-
-}
-
+#include <QFile>
+#include <QDebug>
 
 QCryptographicHash hash(QCryptographicHash::Md5);
 
@@ -47,7 +40,7 @@ QStringList Shingles::getshingles(QString s){
     return L;
 }
 
-QString Shingles::check(QStringList s,QStringList f){
+double Shingles::check(QStringList s,QStringList f){
     double g=0;
     double size1 = s.length();
     double size2 = f.size()+1;
@@ -59,7 +52,7 @@ QString Shingles::check(QStringList s,QStringList f){
                 }
             }
         }
-        return QString::number((g/size2) * 100);
+        return (g/size2) * 100;
     } else {
         for (int i=0; i<s.size(); i++){
             for (int k=0; k<s.size(); k++){
@@ -68,6 +61,15 @@ QString Shingles::check(QStringList s,QStringList f){
                 }
             }
         }
-        return QString::number((g/size1) * 100);
+        return (g/size1) * 100;
     }
+}
+
+QString Shingles::readFile(QString a)
+{
+    QFile file("alex.txt");
+    QByteArray data;
+    data = file.readAll();
+    qDebug() << QString(data);
+    return QString(data);
 }

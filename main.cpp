@@ -4,6 +4,8 @@
 #include <QtQml>
 #include <QQmlContext>
 #include <string>
+#include <QApplication>
+
 
 
 int main(int argc, char *argv[])
