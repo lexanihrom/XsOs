@@ -42,8 +42,8 @@ QStringList Shingles::getshingles(QString s){
 
 double Shingles::check(QStringList s,QStringList f){
     double g=0;
-    double size1 = s.length();
-    double size2 = f.size()+1;
+    double size1 = s.size();
+    double size2 = f.size();
     if (s.size() > f.size()){
         for (int i=0; i<f.size(); i++){
             for (int k=0; k<f.size(); k++){
@@ -67,9 +67,18 @@ double Shingles::check(QStringList s,QStringList f){
 
 QString Shingles::readFile(QString a)
 {
-    QFile file("alex.txt");
-    QByteArray data;
-    data = file.readAll();
-    qDebug() << QString(data);
-    return QString(data);
+        QString b = a.section("/",3,-1);
+        QFile file(b);
+        QString fileContent;
+        if ( file.open(QIODevice::ReadOnly) ) {
+            QString line;
+            QTextStream t( &file );
+            do {
+                line = t.readLine();
+                fileContent += line;
+             } while (!line.isNull());
+
+            file.close();
+        }
+        return fileContent;
 }

@@ -7,14 +7,19 @@ import QtQuick.Dialogs 1.1
 
 ApplicationWindow {
     visible: true
-    width: 513
-    height: 542
-    title: "Антиплагиатище"
+    width: 500
+    height: 500
+    title: "Антиплагиат"
     FileDialog {
             id: fileDialog
             title: "Please choose a file"
-            nameFilters: ["Text files (*.txt)"]
-            onAccepted: text1.text = shingles.readFile(fileUrl)
+            nameFilters: ["Text files (*.txt)", "HTML files (*.html, *.htm)"]
+            onAccepted: {
+                if (text2.activeFocus)
+                    text2.text = shingles.readFile(fileUrl)
+                if (text1.activeFocus)
+                    text1.text = shingles.readFile(fileUrl)
+            }
         }
 
     menuBar: MenuBar {
@@ -76,8 +81,7 @@ ApplicationWindow {
         anchors.top: text1.bottom
         anchors.right: text2.left
         onClicked: {
-            label1.text = shingles.check(shingles.getshingles(shingles.cannonize(text1.text)),shingles.getshingles(shingles.cannonize(text2.text)))
-            console.log(shingles.check(shingles.getshingles(shingles.cannonize(text1.text)),shingles.getshingles(shingles.cannonize(text2.text))))
+            label1.text = niceText(text1.text, text2.text)
         }
 
     }
