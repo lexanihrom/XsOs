@@ -7,7 +7,7 @@ import QtQuick.Dialogs 1.1
 
 ApplicationWindow {
     visible: true
-    width: 410
+    width: 411
     height: 410
     title: "Антиплагиатище"
     FileDialog {
