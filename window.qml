@@ -13,7 +13,7 @@ ApplicationWindow {
     FileDialog {
             id: fileDialog
             title: "Please choose a file"
-            nameFilters: ["Text files (*.txt)", "HTML files (*.html, *.htm)"]
+            nameFilters: ["Text files (*.txt)"]
             onAccepted: {
                 if (text2.activeFocus)
                     text2.text = shingles.readFile(fileUrl)

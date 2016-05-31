@@ -18,7 +18,7 @@ QString Shingles::cannonize(QString s)
 
     for(int i = 0; i < 7; i++)
     {
-        s.replace(stopsymbols[i],QString(" "));
+        s.remove(stopsymbols[i],Qt::CaseSensitive);
     }
     return s;
 
@@ -42,22 +42,24 @@ QStringList Shingles::getshingles(QString s){
 
 double Shingles::check(QStringList s,QStringList f){
     double g=0;
-    double size1 = s.size();
-    double size2 = f.size();
+    double size1 = s.length();
+    double size2 = f.length();
     if (s.size() > f.size()){
         for (int i=0; i<f.size(); i++){
             for (int k=0; k<f.size(); k++){
                 if (s[i] == f[k]){
-                    g=g+1;
+                    g++;
+                    i++;
                 }
             }
         }
         return (g/size2) * 100;
     } else {
-        for (int i=0; i<s.size(); i++){
-            for (int k=0; k<s.size(); k++){
+        for (int i=0; i<size1; i++){
+            for (int k=0; k<size1; k++){
                 if (s[i] == f[k]){
-                    g=g+1;
+                    g++;
+                    i++;
                 }
             }
         }
